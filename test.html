@@ -1,0 +1,395 @@
+<!--
+ <test.html>
+ <app/saicryptomodule>
+
+ Created on <24 Jan 2018>.
+ Copyright © 2018 Webmakom. All rights reserved. -->
+
+<html>
+<head>
+  <title>SaiCryptoModule Test Panel</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<style>
+main {
+  width: 100%;
+  height: 100%;
+}
+p {
+  font-weight: 700;
+}
+a {
+  font-size: 14px;
+}
+code {
+  color: black;
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+  <nav>
+    <input type="number" id="test-amount" value="200">
+    <input type="text" id="ip-addr" value="http://localhost:8818/">
+    <input type='radio' id='get-request' name='type' data-target="get" value='get'> GET </input>
+    <input type='radio' id='post-request' name='type' data-target="post" value='post'> POST </input>
+    <hr/>
+    <input type="text" id="email" value="kkk@kkk.kkk"/>
+    <input type="text" id="password" value="123123" />
+    <button id="register" data-target="register">Register</button>
+    <button id="login" data-target="login">Login</button>
+    <hr/>
+    <input type="text" id="data" value='{"a":3,"b":4}'>
+    <button id="crud" data-target="crud">CRUD</button>
+    
+    <!-- <input type="number" id="dsa-keysize" value="2048"/>
+    <button id="dsa-sign" data-target="testDSASign">DSA Signature Verifying Test </button>
+    <button id="dsa-import" data-target="testDSAimport">DSA Import Export Test </button>
+    <hr/>
+    <button id="dh-ecnrypt" data-target="testDH">DH Encrypting Decrypting Test </button>
+    <button id="dh-import" data-target="testDHimport">DH Import Export Test </button>
+    <button id="big" data-target="testDHbig">DH Big Text </button>
+    <hr/>
+    <button id="ecdh-ecnrypt" data-target="testECDH">ECDH Encrypting Decrypting Test </button> -->
+    <!-- <button id="ecdh-import" data-target="testECDHimport">ECDH Import Export Test </button> -->
+    <!-- <button id="big" data-target="testECDHbig">ECDH Big Text </button> -->
+  </nav>
+  <main id="main">
+
+  </main>
+<script>
+'use strict';
+let Vars = {};
+
+class Response {
+  constructor(data)
+  {
+    this.data = Object.assign({}, data);
+    return this;
+  }
+  clear() {
+    this.data = {};
+  }
+  save(returns) {
+    for(let param in this.data) {
+      if(param in returns) {
+        Vars[returns[param]] = this.data[param];
+      }
+      else
+        Vars[param] = this.data[param];
+    }
+  }
+  toString()
+  {
+    return JSON.stringify(this.data, null, '\t');
+  }
+}
+
+class Request {
+  constructor(url, title, params, returns=null) {
+    this.id = Math.floor(Math.random() * (1000 - 0 + 1)) + 1000;
+    this.title = title;
+    this.url = url;
+    this.params = params;
+    this.returns = returns;
+  }
+  getData()
+  {
+    return new Promise(resolve => {
+      let self = this;
+      $.get($("#ip-addr").val() + this, function( data ) {
+        resolve(data);
+      });
+    });
+  }
+  postData() {
+    return new Promise(resolve => {
+      let self = this;
+      $.post($("#ip-addr").val() + this, JSON.stringify(this.toJSON()), function (data) {
+        resolve(data);
+      });
+    });
+  }
+  async run() {
+    let data = await this.postData();
+    this.response = new Response(data);
+    return data;
+  }
+  toJSON() 
+  {
+    let obj = {}
+    let self = this
+    for (let param in this.params) {
+      if (typeof this.params[param] === 'string' && this.params[param].includes("vars:")) {
+        obj[param] = Vars[this.params[param].replace("vars:", "")];
+      }
+      else if (typeof this.params[param] === 'object') {
+        let subobj = {}
+        for (let p in this.params[param]) {
+          if (typeof this.params[param][p] === 'string' && this.params[param][p].includes("vars:")) {
+            let key = this.params[param][p].replace("vars:", "")
+            if (key.includes(".")) {
+              let splitt =  key.split('.')
+              let lket = splitt[0]
+              if (lket.includes('[')) {
+                subobj[p] = Vars[lket[1]][splitt[1]]
+              }
+            } else {
+              subobj[p] = Vars[key];
+            }
+            let index= this.params[param][p].replace("vars:", "")
+          }
+          else {
+            subobj[p] = self.params[param][p];
+          }
+        }
+        obj[param] = subobj
+      }
+      else {
+        obj[param] = self.params[param];
+      }
+    }
+    return obj
+  }
+  toString()
+  {
+    let req = this.url;
+    let self = this;
+    // for(let param in this.params) {
+    //   if(this.params[param].includes("vars:")) {
+    //     req += param + "=" + Vars[this.params[param].replace("vars:", "")] + "&";
+    //   }
+    //   else {
+    //     req += param + "=" + self.params[param] + "&";
+    //   }
+    // }
+    return req;
+  }
+}
+
+class Test {
+
+  constructor(requests, rules=null) {
+    this.id = Math.floor(Math.random() * (1000 - 0 + 1)) + 1000;
+    this.vars = {};
+    this.result = true;
+    this.Requests = {
+      requestsArray: [],
+      push: function (obj) {
+        this.requestsArray.push(obj);
+      },
+      pop: function () {
+        return this.requestsArray.shift();
+      },
+      run: function () {
+        if(this.requestsArray.length != 0)
+          this.requestsArray[0].run();
+      }
+    };
+    this.rules = [];
+    let self = this;
+    requests.forEach(function (request) {
+      self.Requests.push(new Request(request.url, request.title, request.params, request.returns));
+    });
+    if(rules != null) {
+      this.rules = rules;
+    }
+  }
+  log(text, type)
+  {
+    if(type == "end") {
+      $('#' + this.id).append("<hr/>");
+    }
+    else if (type == "title") {
+      $('#' + this.id).append("<p>" + text + "</p>");
+    }
+    else if(type == "url") {
+      $('#' + this.id).append('<a href="' + text + '">' + text + "</a></br>");
+    }
+    else if(type == "code") {
+      $('#' + this.id).append("<code>" + text + "<code/>");
+    }
+  }
+  draw()
+  {
+    $('#main').append('<div id="' + this.id + '" </div>');
+  }
+  valid() {
+    for(let rule in this.rules) {
+      let ayto;
+      rule = this.rules[rule];
+      if(rule.includes("=")) {
+        ayto = rule.split("=");
+      }
+      if(ayto[0].includes("vars:") || ayto[1].includes("vars:")) {
+        this.result = (Vars[ayto[0].replace("vars:")] == Vars[ayto[1].replace("vars:")]);
+      }
+    }
+    return this.result;
+  }
+  status() {
+    if(this.valid())
+      $('#' + this.id).css("background-color", "#90CEB9");
+    else
+      $('#' + this.id).css("background-color", "#FD7C6E");
+  }
+  async run() {
+    this.draw();
+    while(this.Requests.requestsArray.length > 0) {
+      let request = this.Requests.pop();
+      let self = this;
+      console.log(request);
+      await request.run().then(data => {
+          console.log(data);
+          this.log(request.title, "title");
+          this.log(request, "url");
+          if("error" in data)
+            this.result = false;
+          this.log(request.response, "code");
+          if(this.result) {
+            request.response.save(request.returns);
+          }
+          console.log(Vars);
+      });
+    }
+    return this;
+  }
+}
+let i = 1;
+
+let tests = {
+  register: function () {
+    Vars = {};
+    let test = new Test([
+      {
+        url: "register?",
+        title: "Registration " + $('#email').val(),
+        params: {
+          "email": $('#email').val(),
+          "password": $('#password').val(),
+        },
+        returns: {}
+      }
+    ]);
+    test.run().then((self) => {
+      self.status();
+      self.log("", "end");
+      i--;
+      if (i > 0)
+        tests.register();
+    });
+  },
+  login: function () {
+    Vars = {};
+    let test = new Test([
+      {
+        url: "login?",
+        title: "Login " + $('#email').val(),
+        params: {
+          "email": $('#email').val(),
+          "password": $('#password').val(),
+        },
+        returns: {}
+      }
+    ]);
+    test.run().then((self) => {
+      self.status();
+      self.log("", "end");
+      i--;
+      if (i > 0)
+        tests.register();
+    });
+  },
+  crud: function () {
+    Vars = {};
+    let test = new Test([
+      {
+        url: "login?",
+        title: "Login " + $('#email').val(),
+        params: {
+          "email": $('#email').val(),
+          "password": $('#password').val(),
+        },
+        returns: {}
+      },
+      {
+        url: "get?",
+        title: "Get data",
+        params: {
+          "collection": "test",
+          "token": "vars:token"
+        },
+        returns: {}
+      },
+      {
+        url: "save?",
+        title: "Save data",
+        params: {
+          "collection": "test",
+          "data": JSON.parse($('#data').val()),
+          "token": "vars:token"
+        },
+        returns: {}
+      },
+      {
+        url: "get?",
+        title: "Get data by ID",
+        params: {
+          "collection": "test",
+          "token": "vars:token",
+          "select": {
+            "_id": "vars:[0]._id"
+          },
+        },
+        returns: {}
+      },
+      {
+        url: "update?",
+        title: "Update data",
+        params: {
+          "collection": "test",
+          "data": {
+            a: Math.floor(Math.random() * Math.floor(100))
+          },
+          "select": {
+            "_id": "vars:[0]._id"
+          },
+          "token": "vars:token"
+        },
+        returns: {}
+      },
+      {
+        url: "remove?",
+        title: "Remove data",
+        params: {
+          "collection": "test",
+          "select": {
+            "_id": "vars:[0]._id"
+          },
+          "token": "vars:token"
+        },
+        returns: {}
+      },
+    ]);
+    test.run().then((self) => {
+      self.status();
+      self.log("", "end");
+      i--;
+      if(i > 0)
+        tests.crud();
+    });
+  },
+}
+
+  $(document).ready(function () {
+    $('button').click(function () {
+      $('main').empty();
+      i = $('#test-amount').val();
+      tests[$(this).data("target")]();
+    });
+  });
+</script>
+</body>
+</html>

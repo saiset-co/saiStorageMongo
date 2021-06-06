@@ -1,0 +1,60 @@
+{
+  "http_server": {
+    "host": "localhost",
+    "port": 8818
+  },
+  "db": {
+    "local": {
+      "config": {
+        "username": "sai_user",
+        "password": "54321qaz",
+        "database": "storage"
+      },
+      "hosts": [
+        "127.0.0.1:27017"
+      ],
+      "enabled": true
+    },
+    "atlas": {
+      "config": {
+        "username": "Kirill",
+        "password": "2PF8qDc84ciLaeg4",
+        "database": "test"
+      },
+      "hosts": [
+        "cluster0-qglca.mongodb.net:27017"
+      ],
+      "connection_string": "Kirill:2PF8qDc84ciLaeg4@cluster0-qglca.mongodb.net/test",
+      "enabled": false
+    }
+  },
+  "auth": {
+    "super_admin": {
+      "email": "admin@saistorage.com",
+      "password": "123"
+    },
+    "enabled": true,
+    "default_roles": [
+      {
+        "name": "user",
+        "permissions": [
+          {
+            "url": "/get",
+            "params": [
+              {
+                "name": "collection",
+                "rules": [
+                  "!tokens"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "super_admin",
+        "permissions": []
+      }
+    ]
+  }
+}

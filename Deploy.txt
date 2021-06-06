@@ -1,0 +1,3 @@
+там есть файлик deploy.sh
+выполнить можно ./deploy.sh src/sai_storage/SaiStorage.go 
+
