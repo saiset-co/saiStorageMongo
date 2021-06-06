@@ -1,3 +1,8 @@
 там есть файлик deploy.sh
 выполнить можно ./deploy.sh src/sai_storage/SaiStorage.go 
 
+все по возможости локально, но нужно установить
+
+go get gopkg.in/check.v1
+go get gopkg.in/yaml.v2  
+
