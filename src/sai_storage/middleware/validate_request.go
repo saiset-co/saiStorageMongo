@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"reflect"
 	//"fmt"
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
-	"saiStorageMongo/src/sai/network/http"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
 )
 
 func ValidateRequest(h fasthttp.RequestHandler) fasthttp.RequestHandler {
@@ -61,7 +61,7 @@ func Satisfy(param interface{}, rules []string, paramType string) bool {
 	for _, rule := range rules {
 		if rule == "!empty" {
 			if param == "" {
-				return false;
+				return false
 			}
 		}
 	}

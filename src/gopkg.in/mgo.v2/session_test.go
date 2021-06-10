@@ -37,9 +37,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2/bson"
 	. "gopkg.in/check.v1"
-	"saiStorageMongo/src/gopkg.in/mgo.v2"
-	"saiStorageMongo/src/gopkg.in/mgo.v2/bson"
 )
 
 func (s *S) TestRunString(c *C) {

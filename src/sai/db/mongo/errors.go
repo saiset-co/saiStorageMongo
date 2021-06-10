@@ -1,9 +1,9 @@
 package mongo
 
 import (
-	"saiStorageMongo/src/sai/common"
-	"net/http"
 	"fmt"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"net/http"
 )
 
 func ObjectAlreadyExistsError(objectName string) *common.Error {

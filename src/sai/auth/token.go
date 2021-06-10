@@ -1,11 +1,11 @@
 package auth
 
 import (
-	"saiStorageMongo/src/github.com/satori/go.uuid"
-	"fmt"
 	"crypto"
-	"time"
 	"encoding/base64"
+	"fmt"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/satori/go.uuid"
+	"time"
 )
 
 const DEFUALT_TOKEN_EXPIRATION_DATE = 60 * 60 * 24 * 365

@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
-	"saiStorageMongo/src/gopkg.in/mgo.v2/internal/json"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2/internal/json"
 	"strconv"
 	"time"
 )

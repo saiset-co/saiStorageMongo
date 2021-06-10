@@ -1,9 +1,9 @@
 package common
 
 import (
-	"time"
 	"fmt"
-	"saiStorageMongo/src/github.com/fatih/color"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/fatih/color"
+	"time"
 )
 
 type Error struct {

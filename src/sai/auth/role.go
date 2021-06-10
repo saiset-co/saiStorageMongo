@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"saiStorageMongo/src/sai/storage"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/storage"
 )
 
 var (

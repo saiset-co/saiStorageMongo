@@ -1,10 +1,10 @@
 package settings
 
 import (
-	"saiStorageMongo/src/sai/network/http"
-	"saiStorageMongo/src/github.com/tkanos/gonfig"
-	"saiStorageMongo/src/sai/auth"
 	"fmt"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/tkanos/gonfig"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/auth"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
 )
 
 type DatabaseConfig struct {
@@ -15,13 +15,13 @@ type DatabaseConfig struct {
 
 type LocalMongoConfig struct {
 	Config  DatabaseConfig `json:"config"`
-	Hosts   []string       `json:"hosts"`
+	Host    string         `json:"host"`
 	Enabled bool           `json:"enabled"`
 }
 
 type AtlasMongoConfig struct {
 	Config           DatabaseConfig `json:"config"`
-	Hosts            []string       `json:"hosts"`
+	Host             string         `json:"host"`
 	Enabled          bool           `json:"enabled"`
 	ConnectionString string         `json:"connection_string"`
 }

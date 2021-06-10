@@ -1,13 +1,13 @@
 package middleware
 
 import (
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
-	"saiStorageMongo/src/sai_storage/settings"
 	"encoding/json"
-	"saiStorageMongo/src/sai/db/mongo"
-	"saiStorageMongo/src/sai/auth"
-	"saiStorageMongo/src/sai/network/http"
-	"saiStorageMongo/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/auth"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/settings"
 )
 
 func CheckAuth(h fasthttp.RequestHandler) fasthttp.RequestHandler {
@@ -46,7 +46,7 @@ func CheckAuth(h fasthttp.RequestHandler) fasthttp.RequestHandler {
 				http.SetErrorResponse(ctx, err)
 				return
 			}
-			json.Unmarshal(common.ConvertInterfaceToJson(foundToken), &token);
+			json.Unmarshal(common.ConvertInterfaceToJson(foundToken), &token)
 
 			//		auth.AddToken(&token)
 			//	} else {

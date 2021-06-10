@@ -3,7 +3,7 @@ package bytebufferpool_test
 import (
 	"fmt"
 
-	"saiStorageMongo/src/github.com/valyala/bytebufferpool"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/valyala/bytebufferpool"
 )
 
 func ExampleByteBuffer() {

@@ -1,18 +1,22 @@
 package main
 
 import (
-	"saiStorageMongo/src/sai/db/mongo"
-	"saiStorageMongo/src/sai/network/http"
-	"saiStorageMongo/src/sai_storage/api"
-	"saiStorageMongo/src/sai_storage/settings"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/api"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/settings"
 )
 
 func main() {
 	settings.LoadSettings()
 	settings.SaveSettings()
 	mongo.SetMongoDBInv(settings.Settings.DB)
-	mongo.StartMongod()
-	mongo.TestMongodConnection()
+
+	if !settings.Settings.DB.Atlas.Enabled {
+		mongo.StartMongod()
+	}
+
+	mongo.TestMongoConnection()
 	http.SetHttpServerInv(settings.Settings.HttpServer)
 	api.InitAPI()
 	api.CreateDefaultRoles(settings.Settings.Auth.DefaultRoles)

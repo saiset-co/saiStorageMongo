@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"saiStorageMongo/src/github.com/segmentio/ksuid"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/segmentio/ksuid"
 )
 
 var (

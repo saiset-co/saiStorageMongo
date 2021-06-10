@@ -1,15 +1,15 @@
 package api
 
 import (
-	"saiStorageMongo/src/sai/network/http"
-	"saiStorageMongo/src/sai/db/mongo"
-	"saiStorageMongo/src/sai/auth"
 	"encoding/json"
-	"saiStorageMongo/src/sai_storage/settings"
-	"saiStorageMongo/src/sai/common"
-	"saiStorageMongo/src/sai_storage/routing"
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
 	"fmt"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/auth"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/routing"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/settings"
 )
 
 func Registration() {
@@ -52,14 +52,14 @@ func registerUser(ctx *fasthttp.RequestCtx) {
 		user.Data = data
 	}
 
-	email, emailExist := request["email"];
+	email, emailExist := request["email"]
 	if !emailExist {
 		err := http.BadRequestError()
 		http.SetErrorResponse(ctx, err)
 		return
 	}
 
-	password, passwordExist := request["password"];
+	password, passwordExist := request["password"]
 	if !passwordExist {
 		err := http.BadRequestError()
 		http.SetErrorResponse(ctx, err)

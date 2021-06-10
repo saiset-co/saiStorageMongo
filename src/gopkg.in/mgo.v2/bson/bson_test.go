@@ -39,8 +39,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2/bson"
 	. "gopkg.in/check.v1"
-	"saiStorageMongo/src/gopkg.in/mgo.v2/bson"
 	"gopkg.in/yaml.v2"
 )
 
