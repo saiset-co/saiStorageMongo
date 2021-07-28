@@ -33,7 +33,7 @@ import (
 	"sync"
 	"time"
 
-	"saiStorageMongo/src/gopkg.in/mgo.v2/bson"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2/bson"
 )
 
 type replyFunc func(err error, reply *replyOp, docNum int, docData []byte)

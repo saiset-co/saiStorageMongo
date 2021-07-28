@@ -1,6 +1,6 @@
 package auth
 
-import "saiStorageMongo/src/sai/storage"
+import "github.com/webmakom-com/mycointainer/src/Storage/src/sai/storage"
 
 type Session struct {
 	ID               string

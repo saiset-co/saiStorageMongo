@@ -16,7 +16,7 @@ import (
 	"sync"
 	"time"
 
-	"saiStorageMongo/src/github.com/klauspost/compress/gzip"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/klauspost/compress/gzip"
 )
 
 // ServeFileBytesUncompressed returns HTTP response containing file contents

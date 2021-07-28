@@ -1,8 +1,8 @@
 package routing
 
 import (
-	"saiStorageMongo/src/sai/network/http"
-	"saiStorageMongo/src/sai_storage/middleware"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/middleware"
 )
 
 func WithAuth() *http.RouteGroup {

@@ -6,7 +6,7 @@
 package flate
 
 import (
-	"saiStorageMongo/src/github.com/klauspost/cpuid"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/klauspost/cpuid"
 )
 
 // crc32sse returns a hash for the first 4 bytes of the slice

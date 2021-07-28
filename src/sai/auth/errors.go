@@ -1,9 +1,9 @@
 package auth
 
 import (
-	"saiStorageMongo/src/sai/common"
-	"net/http"
 	"fmt"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"net/http"
 )
 
 func TokenExpiredError() *common.Error {

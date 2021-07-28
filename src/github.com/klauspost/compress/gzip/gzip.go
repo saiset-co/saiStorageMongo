@@ -10,7 +10,7 @@ import (
 	"hash/crc32"
 	"io"
 
-	"saiStorageMongo/src/github.com/klauspost/compress/flate"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/klauspost/compress/flate"
 )
 
 // These constants are copied from the flate package, so that code that imports

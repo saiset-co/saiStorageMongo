@@ -5,7 +5,7 @@ import (
 	"io"
 	"sync"
 
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp/fasthttputil"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp/fasthttputil"
 )
 
 // StreamWriter must write data to w.

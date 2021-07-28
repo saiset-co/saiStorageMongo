@@ -1,14 +1,14 @@
 package api
 
 import (
-	"saiStorageMongo/src/sai/network/http"
-	"saiStorageMongo/src/sai_storage/routing"
 	"encoding/json"
 	"fmt"
-	"saiStorageMongo/src/sai/storage"
-	"saiStorageMongo/src/sai/db/mongo"
-	"saiStorageMongo/src/sai/common"
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/storage"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/routing"
 )
 
 func AddUpdateDataMethod() {
@@ -72,6 +72,7 @@ func update(ctx *fasthttp.RequestCtx) {
 	result := make([]interface{}, 0)
 
 	if err := mongo.Update(fmt.Sprint(collection), selector, data, options, &result); err != nil {
+		fmt.Println("Data: ", data)
 		http.SetErrorResponse(ctx, err)
 	} else {
 		ctx.SetBody(common.ConvertInterfaceToJson(result))

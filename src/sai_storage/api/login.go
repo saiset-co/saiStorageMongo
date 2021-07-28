@@ -1,17 +1,17 @@
 package api
 
 import (
-	"saiStorageMongo/src/sai/network/http"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/auth"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
 	//"sai/network/auth"
-	"saiStorageMongo/src/sai/db/mongo"
-	"saiStorageMongo/src/sai/auth"
-	//"saiStorageMongo/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
+	//"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
 	//"fmt"
 	"encoding/json"
-	"saiStorageMongo/src/sai_storage/routing"
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
 	"fmt"
-	"saiStorageMongo/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/routing"
 )
 
 func Login() {
@@ -29,14 +29,14 @@ func login(ctx *fasthttp.RequestCtx) {
 	var request map[string]interface{}
 	json.Unmarshal(ctx.PostBody(), &request)
 
-	email, emailExist := request["email"];
+	email, emailExist := request["email"]
 	if !emailExist {
 		err := http.BadRequestError()
 		http.SetErrorResponse(ctx, err)
 		return
 	}
 
-	password, passwordExist := request["password"];
+	password, passwordExist := request["password"]
 	if !passwordExist {
 		err := http.BadRequestError()
 		http.SetErrorResponse(ctx, err)
@@ -50,13 +50,12 @@ func login(ctx *fasthttp.RequestCtx) {
 	var user auth.User
 	var token *auth.Token
 
-	var foundUser interface{}
+	var foundUser map[string]interface{}
 	if err := mongo.FindOne(auth.UserCollection, userData, &foundUser); err != nil {
 		err = auth.UserNotRegisteredError()
 		http.SetErrorResponse(ctx, err)
 		return
 	}
-
 	json.Unmarshal(common.ConvertInterfaceToJson(foundUser), &user)
 	token = auth.CreateUserToken(&user)
 
@@ -65,7 +64,7 @@ func login(ctx *fasthttp.RequestCtx) {
 	roleData := map[string]interface{}{}
 	roleData["_id"] = user.RoleID
 
-	var foundRole interface{}
+	var foundRole map[string]interface{}
 	if err := mongo.FindOne(auth.RoleCollection, roleData, &foundRole); err != nil {
 		err = mongo.ObjectNotExistsError("role")
 		http.SetErrorResponse(ctx, err)

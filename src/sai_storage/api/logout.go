@@ -1,15 +1,15 @@
 package api
 
 import (
-	"saiStorageMongo/src/sai/network/http"
-	//"sai/auth"
-	"saiStorageMongo/src/sai_storage/routing"
-	//"sai/db/mongo"
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
-	"saiStorageMongo/src/sai/db/mongo"
-	"saiStorageMongo/src/sai/auth"
 	"encoding/json"
-	"saiStorageMongo/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	//"sai/auth"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/routing"
+	//"sai/db/mongo"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/auth"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
 )
 
 func Logout() {
@@ -31,7 +31,7 @@ func logout(ctx *fasthttp.RequestCtx) {
 	tokenData := map[string]interface{}{}
 	tokenData["token"] = tokenArgument
 	var token auth.Token
-	var foundToken interface{}
+	var foundToken map[string]interface{}
 
 	err := mongo.FindOne(auth.TokenCollection, tokenData, &foundToken)
 	if err != nil {
@@ -39,7 +39,7 @@ func logout(ctx *fasthttp.RequestCtx) {
 		http.SetErrorResponse(ctx, err)
 		return
 	}
-	json.Unmarshal(common.ConvertInterfaceToJson(foundToken), &token);
+	json.Unmarshal(common.ConvertInterfaceToJson(foundToken), &token)
 	userData := make(map[string]interface{}, 0)
 	userData["user_id"] = token.UserID
 	mongo.Remove(auth.TokenCollection, userData, nil)

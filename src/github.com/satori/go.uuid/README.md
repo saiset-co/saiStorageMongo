@@ -32,7 +32,7 @@ package main
 
 import (
 	"fmt"
-	"saiStorageMongo/src/github.com/satori/go.uuid"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/satori/go.uuid"
 )
 
 func main() {

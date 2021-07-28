@@ -1,14 +1,14 @@
 package api
 
 import (
-	"saiStorageMongo/src/sai/network/http"
-	"saiStorageMongo/src/sai_storage/routing"
-	"fmt"
-	"saiStorageMongo/src/sai/db/mongo"
-	"saiStorageMongo/src/sai/storage"
-	"saiStorageMongo/src/sai/common"
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
 	"encoding/json"
+	"fmt"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/storage"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/routing"
 )
 
 func AddGetDataMethod() {
@@ -78,7 +78,7 @@ func gett(request *http.HttpRequest) {
 
 	collection, _ := request.GetParam("collection")
 	selectorArgument, _ := request.GetParam("select")
-	options,_ := request.GetParam("options")
+	options, _ := request.GetParam("options")
 
 	selector := map[string]interface{}{}
 	if _, exist := request.GetParam("user_id"); exist {

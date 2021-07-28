@@ -1,21 +1,21 @@
 package api
 
 import (
-	"saiStorageMongo/src/sai/network/http"
-	"saiStorageMongo/src/sai_storage/routing"
-	"saiStorageMongo/src/sai/storage"
-	"saiStorageMongo/src/sai/db/mongo"
-	"fmt"
-	"saiStorageMongo/src/sai/common"
 	"encoding/json"
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
+	"fmt"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/storage"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/routing"
 )
 
 func AddSaveDataMethod() {
 	route := &http.Route{
-		Name:    "Save",
-		Method:  "POST",
-		Pattern: "/save",
+		Name:       "Save",
+		Method:     "POST",
+		Pattern:    "/save",
 		Handler:    save,
 		RouteGroup: routing.WithAuthAndValidation(),
 		Validations: []http.Validation{

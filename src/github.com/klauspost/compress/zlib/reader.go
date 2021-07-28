@@ -30,7 +30,7 @@ import (
 	"hash/adler32"
 	"io"
 
-	"saiStorageMongo/src/github.com/klauspost/compress/flate"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/klauspost/compress/flate"
 )
 
 const zlibDeflate = 8

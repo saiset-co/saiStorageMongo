@@ -10,7 +10,7 @@ import (
 	"os"
 	"sync"
 
-	"saiStorageMongo/src/github.com/valyala/bytebufferpool"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/valyala/bytebufferpool"
 )
 
 // Request represents HTTP request.

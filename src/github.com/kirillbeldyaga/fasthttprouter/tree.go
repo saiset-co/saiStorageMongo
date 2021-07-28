@@ -5,7 +5,7 @@
 package fasthttprouter
 
 import (
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
 	"strings"
 	"unicode"
 	"unicode/utf8"

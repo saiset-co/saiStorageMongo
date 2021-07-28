@@ -38,9 +38,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2/bson"
 	. "gopkg.in/check.v1"
 	"gopkg.in/mgo.v2"
-	"saiStorageMongo/src/gopkg.in/mgo.v2/bson"
 )
 
 var fast = flag.Bool("fast", false, "Skip slow tests")

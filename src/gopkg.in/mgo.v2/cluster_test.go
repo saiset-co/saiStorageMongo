@@ -34,9 +34,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2/bson"
 	. "gopkg.in/check.v1"
-	"saiStorageMongo/src/gopkg.in/mgo.v2"
-	"saiStorageMongo/src/gopkg.in/mgo.v2/bson"
 )
 
 func (s *S) TestNewSession(c *C) {
@@ -1476,7 +1476,6 @@ func (s *S) TestSecondaryModeWithMongosInsert(c *C) {
 	coll.Find(nil).One(&result)
 	c.Assert(result.A, Equals, 1)
 }
-
 
 func (s *S) TestRemovalOfClusterMember(c *C) {
 	if *fast {

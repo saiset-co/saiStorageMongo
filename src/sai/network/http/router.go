@@ -1,7 +1,7 @@
 package http
 
 import (
-	"saiStorageMongo/src/github.com/kirillbeldyaga/fasthttprouter"
+	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttprouter"
 )
 
 var (
