@@ -1,0 +1,9 @@
+version: '3'
+services:
+
+  storage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8818:8818"
