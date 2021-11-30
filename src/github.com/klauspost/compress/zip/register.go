@@ -10,7 +10,7 @@ import (
 	"io/ioutil"
 	"sync"
 
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/klauspost/compress/flate"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/klauspost/compress/flate"
 )
 
 // A Compressor returns a compressing writer, writing to the

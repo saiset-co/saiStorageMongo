@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2/bson"
+	"github.com/saiset-co/saiStorageMongo/src/gopkg.in/mgo.v2/bson"
 	. "gopkg.in/check.v1"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/dbtest"

@@ -14,7 +14,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2/bson"
+	"github.com/saiset-co/saiStorageMongo/src/gopkg.in/mgo.v2/bson"
 	"gopkg.in/mgo.v2"
 
 	crand "crypto/rand"

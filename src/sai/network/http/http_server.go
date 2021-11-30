@@ -2,12 +2,12 @@ package http
 
 import (
 	"fmt"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttprouter"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/fatih/color"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/fatih/color"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/kirillbeldyaga/fasthttprouter"
+	"github.com/saiset-co/saiStorageMongo/src/sai/common"
 	"log"
 	"net/http"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
 )
 
 type HttpServer struct {

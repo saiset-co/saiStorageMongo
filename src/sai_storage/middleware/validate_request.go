@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"reflect"
 	//"fmt"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/saiset-co/saiStorageMongo/src/sai/network/http"
 )
 
 func ValidateRequest(h fasthttp.RequestHandler) fasthttp.RequestHandler {

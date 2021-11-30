@@ -1,16 +1,16 @@
 package api
 
 import (
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/auth"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/routing"
+	"github.com/saiset-co/saiStorageMongo/src/sai/auth"
+	"github.com/saiset-co/saiStorageMongo/src/sai/db/mongo"
+	"github.com/saiset-co/saiStorageMongo/src/sai/network/http"
+	"github.com/saiset-co/saiStorageMongo/src/sai_storage/routing"
 	//"encoding/json"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/settings"
-	//"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"github.com/saiset-co/saiStorageMongo/src/sai_storage/settings"
+	//"github.com/saiset-co/saiStorageMongo/src/sai/common"
 	"encoding/json"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/saiset-co/saiStorageMongo/src/sai/common"
 )
 
 func CreateRole() {

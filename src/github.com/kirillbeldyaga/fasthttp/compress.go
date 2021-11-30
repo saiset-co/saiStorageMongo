@@ -7,11 +7,11 @@ import (
 	"os"
 	"sync"
 
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp/stackless"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/klauspost/compress/flate"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/klauspost/compress/gzip"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/klauspost/compress/zlib"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/valyala/bytebufferpool"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp/stackless"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/klauspost/compress/flate"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/klauspost/compress/gzip"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/klauspost/compress/zlib"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/valyala/bytebufferpool"
 )
 
 // Supported compression levels.

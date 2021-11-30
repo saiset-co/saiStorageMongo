@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
 )
 
 type Middleware func(handler fasthttp.RequestHandler) fasthttp.RequestHandler

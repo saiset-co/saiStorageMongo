@@ -1,7 +1,7 @@
 package fasthttp
 
 import (
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/valyala/bytebufferpool"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/valyala/bytebufferpool"
 )
 
 // ByteBuffer provides byte buffer, which can be used with fasthttp API

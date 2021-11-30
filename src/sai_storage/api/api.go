@@ -1,7 +1,6 @@
 package api
 
 func InitAPI() {
-	Ping()
 	AddGetDataMethod()
 	AddSaveDataMethod()
 	AddUpdateDataMethod()

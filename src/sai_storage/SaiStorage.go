@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/api"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/settings"
+	"github.com/saiset-co/saiStorageMongo/src/sai/db/mongo"
+	"github.com/saiset-co/saiStorageMongo/src/sai/network/http"
+	"github.com/saiset-co/saiStorageMongo/src/sai_storage/api"
+	"github.com/saiset-co/saiStorageMongo/src/sai_storage/settings"
 )
 
 func main() {

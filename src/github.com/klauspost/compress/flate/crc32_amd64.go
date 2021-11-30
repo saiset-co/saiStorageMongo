@@ -1,12 +1,12 @@
-//+build !noasm
-//+build !appengine
+//go:build !noasm && !appengine
+// +build !noasm,!appengine
 
 // Copyright 2015, Klaus Post, see LICENSE for details.
 
 package flate
 
 import (
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/klauspost/cpuid"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/klauspost/cpuid"
 )
 
 // crc32sse returns a hash for the first 4 bytes of the slice

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export GOPATH="/home/kobs/MDocs/GOlang/go"
+#export GOPATH="/home/kobs/MDocs/GOlang/go"
 #$(pwd)
 echo 'GOPATH:' $GOPATH
 

@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/klauspost/compress/flate"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/klauspost/compress/flate"
 )
 
 type inputFn func() ([]byte, error)

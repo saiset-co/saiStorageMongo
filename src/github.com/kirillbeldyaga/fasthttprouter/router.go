@@ -76,10 +76,10 @@ package fasthttprouter
 import (
 	"strings"
 
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
-	"time"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/fatih/color"
 	"fmt"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/fatih/color"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
+	"time"
 )
 
 var (

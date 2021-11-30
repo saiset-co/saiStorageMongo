@@ -34,8 +34,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2/bson"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/gopkg.in/mgo.v2/internal/scram"
+	"github.com/saiset-co/saiStorageMongo/src/gopkg.in/mgo.v2/bson"
+	"github.com/saiset-co/saiStorageMongo/src/gopkg.in/mgo.v2/internal/scram"
 )
 
 type authCmd struct {

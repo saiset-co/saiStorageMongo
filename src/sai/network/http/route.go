@@ -2,8 +2,8 @@ package http
 
 import (
 	"fmt"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/auth"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/saiset-co/saiStorageMongo/src/sai/auth"
 )
 
 type Validation struct {

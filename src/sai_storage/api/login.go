@@ -1,17 +1,17 @@
 package api
 
 import (
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/auth"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	"github.com/saiset-co/saiStorageMongo/src/sai/auth"
+	"github.com/saiset-co/saiStorageMongo/src/sai/network/http"
 	//"sai/network/auth"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
-	//"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
+	"github.com/saiset-co/saiStorageMongo/src/sai/db/mongo"
+	//"github.com/saiset-co/saiStorageMongo/src/sai/common"
 	//"fmt"
 	"encoding/json"
 	"fmt"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/routing"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/saiset-co/saiStorageMongo/src/sai/common"
+	"github.com/saiset-co/saiStorageMongo/src/sai_storage/routing"
 )
 
 func Login() {

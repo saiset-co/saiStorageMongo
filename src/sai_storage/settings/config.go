@@ -2,9 +2,9 @@ package settings
 
 import (
 	"fmt"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/tkanos/gonfig"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/auth"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/tkanos/gonfig"
+	"github.com/saiset-co/saiStorageMongo/src/sai/auth"
+	"github.com/saiset-co/saiStorageMongo/src/sai/network/http"
 )
 
 type DatabaseConfig struct {

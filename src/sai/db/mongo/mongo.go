@@ -3,9 +3,9 @@ package mongo
 import (
 	"context"
 	"fmt"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/fatih/color"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/settings"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/fatih/color"
+	"github.com/saiset-co/saiStorageMongo/src/sai/common"
+	"github.com/saiset-co/saiStorageMongo/src/sai_storage/settings"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"os/exec"
@@ -28,7 +28,7 @@ type DB interface {
 
 type LocalMongo struct {
 	Config Database `json:"config"`
-	Host   string `json:"host"`
+	Host   string   `json:"host"`
 }
 
 func (mi *LocalMongo) GetCollection(collectionName string) *mongo.Collection {
@@ -42,7 +42,7 @@ func (mi *LocalMongo) GetDatabaseConfig() *Database {
 
 type AtlasMongo struct {
 	Config Database `json:"config"`
-	Host   string `json:"host"`
+	Host   string   `json:"host"`
 }
 
 func (mi *AtlasMongo) GetCollection(collectionName string) *mongo.Collection {
@@ -77,7 +77,7 @@ func (mi *AtlasMongo) GetSession() *mongo.Client {
 	defer cancel()
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(
-		"mongodb+srv://" + mi.Config.Username + ":" + mi.Config.Password + "@" + mi.Host + "/" + mi.Config.Database + "?ssl=true&authSource=admin&retryWrites=true&w=majority",
+		"mongodb+srv://"+mi.Config.Username+":"+mi.Config.Password+"@"+mi.Host+"/"+mi.Config.Database+"?ssl=true&authSource=admin&retryWrites=true&w=majority",
 	))
 
 	if err != nil {
@@ -129,7 +129,7 @@ func StartMongod() {
 			killPsCmd.Run()
 		}
 
-		startMongoCmd := exec.Command("mongod")
+		startMongoCmd := exec.Command("mongod --bind_ip_all")
 		startMongoCmd.Start()
 		d.Println("Mongod started. PID", startMongoCmd.Process.Pid)
 
@@ -165,7 +165,6 @@ func TestMongoConnection() {
 	//_ = Find("test", map[string]interface{}{"field1": map[string]interface{}{"$exists": true}}, map[string]interface{}{"limit": "1", "skip": "2"}, &results2)
 	//fmt.Println("Find: ", results2)
 
-
 	fmt.Println("Mongo server reached!")
 }
 
@@ -199,37 +198,37 @@ func FindOne(collectionName string, selector map[string]interface{}, result *map
 }
 
 func Find(collectionName string, selector map[string]interface{}, inputOptions interface{}, result *[]interface{}) *common.Error {
-	theOptionsLimit :=  make(map[string]int)
-	theOptionsSkip :=  make(map[string]int)
-	theOptionsSort :=  make(map[string]string)
+	theOptionsLimit := make(map[string]int)
+	theOptionsSkip := make(map[string]int)
+	theOptionsSort := make(map[string]string)
 
-	switch o := inputOptions.(type)  {
-		case map[string]interface{}:
-			for s, b := range o {
-				theK := string(s)
-				if theK == "limit" {
-					val,_ := strconv.Atoi(b.(string))
-					theOptionsLimit[theK] = val
-				}
-				if theK == "sort" {
-					val, _ := b.(string)
-					theOptionsSort[theK] = val
-				}
-				if theK == "skip" {
-					val, _ := strconv.Atoi(b.(string))
-					theOptionsSkip[theK] = val
-				}
+	switch o := inputOptions.(type) {
+	case map[string]interface{}:
+		for s, b := range o {
+			theK := string(s)
+			if theK == "limit" {
+				val, _ := strconv.Atoi(b.(string))
+				theOptionsLimit[theK] = val
 			}
+			if theK == "sort" {
+				val, _ := b.(string)
+				theOptionsSort[theK] = val
+			}
+			if theK == "skip" {
+				val, _ := strconv.Atoi(b.(string))
+				theOptionsSkip[theK] = val
+			}
+		}
 		break
 	}
 
 	requestOptions := options.Find()
 
-	if  sort, sortExists := theOptionsSort["sort"]; sortExists {
+	if sort, sortExists := theOptionsSort["sort"]; sortExists {
 		requestOptions.SetSort(sort)
 	}
 
-	if  skip, skipExists := theOptionsSkip["skip"]; skipExists {
+	if skip, skipExists := theOptionsSkip["skip"]; skipExists {
 		requestOptions.SetSkip(int64(skip))
 	}
 
@@ -268,7 +267,8 @@ func Find(collectionName string, selector map[string]interface{}, inputOptions i
 
 func Insert(collectionName string, doc interface{}, result *[]interface{}) *common.Error {
 	collection := Instance.GetCollection(collectionName)
-	_, err := collection.InsertOne(context.TODO(), doc); if err != nil {
+	_, err := collection.InsertOne(context.TODO(), doc)
+	if err != nil {
 		return MongoDBError(err)
 	}
 
@@ -277,7 +277,8 @@ func Insert(collectionName string, doc interface{}, result *[]interface{}) *comm
 
 func Update(collectionName string, selector map[string]interface{}, update interface{}, inputOptions interface{}, result *[]interface{}) *common.Error {
 	collection := Instance.GetCollection(collectionName)
-	_, err := collection.UpdateMany(context.TODO(), selector, update); if err != nil {
+	_, err := collection.UpdateMany(context.TODO(), selector, update)
+	if err != nil {
 		return MongoDBError(err)
 	}
 
@@ -287,7 +288,8 @@ func Update(collectionName string, selector map[string]interface{}, update inter
 func Upsert(collectionName string, selector map[string]interface{}, update interface{}, inputOptions interface{}, result *[]interface{}) *common.Error {
 	collection := Instance.GetCollection(collectionName)
 	requestOptions := options.Update().SetUpsert(true)
-	_, err := collection.UpdateMany(context.TODO(), selector, update, requestOptions); if err != nil {
+	_, err := collection.UpdateMany(context.TODO(), selector, update, requestOptions)
+	if err != nil {
 		return MongoDBError(err)
 	}
 
@@ -296,7 +298,8 @@ func Upsert(collectionName string, selector map[string]interface{}, update inter
 
 func Remove(collectionName string, selector map[string]interface{}, result *[]interface{}) *common.Error {
 	collection := Instance.GetCollection(collectionName)
-	_, err := collection.DeleteOne(context.TODO(), selector); if err != nil {
+	_, err := collection.DeleteOne(context.TODO(), selector)
+	if err != nil {
 		return MongoDBError(err)
 	}
 

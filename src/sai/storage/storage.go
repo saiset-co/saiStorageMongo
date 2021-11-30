@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/segmentio/ksuid"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/segmentio/ksuid"
 	"time"
 )
 
@@ -12,7 +12,7 @@ func CreateNewDataWithTime(newData interface{}) map[string]interface{} {
 	//if newData == nil {
 	//	data = map[string]interface{}{}
 	//} else {
-		data := newData.(map[string]interface{})
+	data := newData.(map[string]interface{})
 	//}
 	// data["cr_time"] = time.Now().Format("2006-01-02 15:04:05")
 	data["cr_time"] = time.Now().UnixNano()

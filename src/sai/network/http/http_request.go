@@ -1,11 +1,11 @@
 package http
 
 import (
-	"net/url"
-	"net/http"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/auth"
 	"encoding/json"
+	"github.com/saiset-co/saiStorageMongo/src/sai/auth"
+	"github.com/saiset-co/saiStorageMongo/src/sai/common"
+	"net/http"
+	"net/url"
 )
 
 //type Param interface{}

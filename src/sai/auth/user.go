@@ -3,8 +3,8 @@ package auth
 import (
 	"crypto"
 	"encoding/base64"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/storage"
+	"github.com/saiset-co/saiStorageMongo/src/sai/common"
+	"github.com/saiset-co/saiStorageMongo/src/sai/storage"
 )
 
 var UserCollection = "users"

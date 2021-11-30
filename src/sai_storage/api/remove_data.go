@@ -3,12 +3,12 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/github.com/kirillbeldyaga/fasthttp"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/common"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/db/mongo"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/network/http"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai/storage"
-	"github.com/webmakom-com/mycointainer/src/Storage/src/sai_storage/routing"
+	"github.com/saiset-co/saiStorageMongo/src/github.com/kirillbeldyaga/fasthttp"
+	"github.com/saiset-co/saiStorageMongo/src/sai/common"
+	"github.com/saiset-co/saiStorageMongo/src/sai/db/mongo"
+	"github.com/saiset-co/saiStorageMongo/src/sai/network/http"
+	"github.com/saiset-co/saiStorageMongo/src/sai/storage"
+	"github.com/saiset-co/saiStorageMongo/src/sai_storage/routing"
 )
 
 func AddRemoveDataMethod() {
