@@ -129,7 +129,7 @@ func StartMongod() {
 			killPsCmd.Run()
 		}
 
-		startMongoCmd := exec.Command("mongod --bind_ip_all")
+		startMongoCmd := exec.Command("mongod", "--bind_ip_all")
 		startMongoCmd.Start()
 		d.Println("Mongod started. PID", startMongoCmd.Process.Pid)
 
