@@ -4,13 +4,13 @@ import (
 	"context"
 	"fmt"
 	"github.com/saiset-co/saiStorageMongo/src/github.com/fatih/color"
+	"github.com/saiset-co/saiStorageMongo/src/gopkg.in/mgo.v2/bson"
 	"github.com/saiset-co/saiStorageMongo/src/sai/common"
 	"github.com/saiset-co/saiStorageMongo/src/sai_storage/settings"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"os/exec"
 	"runtime"
-	"strconv"
 	"time"
 )
 
@@ -198,25 +198,28 @@ func FindOne(collectionName string, selector map[string]interface{}, result *map
 }
 
 func Find(collectionName string, selector map[string]interface{}, inputOptions interface{}, result *[]interface{}) *common.Error {
-	theOptionsLimit := make(map[string]int)
-	theOptionsSkip := make(map[string]int)
-	theOptionsSort := make(map[string]string)
+	theOptionsLimit := make(map[string]int64)
+	theOptionsSkip := make(map[string]int64)
+	var theOptionsSort []bson.M
 
 	switch o := inputOptions.(type) {
 	case map[string]interface{}:
 		for s, b := range o {
 			theK := string(s)
 			if theK == "limit" {
-				val, _ := strconv.Atoi(b.(string))
-				theOptionsLimit[theK] = val
+				val, _ := b.(float64)
+				theOptionsLimit[theK] = int64(val)
 			}
 			if theK == "sort" {
-				val, _ := b.(string)
-				theOptionsSort[theK] = val
+				val, _ := b.(map[string]interface{})
+				for k, v := range val {
+					theOptionsSort = append(theOptionsSort, bson.M{k: v})
+				}
+
 			}
 			if theK == "skip" {
-				val, _ := strconv.Atoi(b.(string))
-				theOptionsSkip[theK] = val
+				val, _ := b.(float64)
+				theOptionsSkip[theK] = int64(val)
 			}
 		}
 		break
@@ -224,16 +227,16 @@ func Find(collectionName string, selector map[string]interface{}, inputOptions i
 
 	requestOptions := options.Find()
 
-	if sort, sortExists := theOptionsSort["sort"]; sortExists {
+	for _, sort := range theOptionsSort {
 		requestOptions.SetSort(sort)
 	}
 
 	if skip, skipExists := theOptionsSkip["skip"]; skipExists {
-		requestOptions.SetSkip(int64(skip))
+		requestOptions.SetSkip(skip)
 	}
 
 	if limit, LimitExists := theOptionsLimit["limit"]; LimitExists {
-		requestOptions.SetLimit(int64(limit))
+		requestOptions.SetLimit(limit)
 	}
 
 	collection := Instance.GetCollection(collectionName)
