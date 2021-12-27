@@ -28,6 +28,8 @@ exe_name=${exe_file[0]}
 platforms=(
     "linux/amd64"
     "linux/386"
+    "linux/arm"
+    "linux/arm64"
     "windows/amd64"
     "windows/386"
     "darwin/amd64"
@@ -48,10 +50,10 @@ do
 
     env GOOS=$GOOS GOARCH=$GOARCH go build -o $output_name $package
 
-    for dependency in $(source $package_path/dependencies.sh)
-    do
-        cp ./$dependency ./$output_path/$dependency
-    done
+#    for dependency in $(source $package_path/dependencies.sh)
+#    do
+#        cp ./$dependency ./$output_path/$dependency
+#    done
 
     if [ $? -ne 0 ]; then
         echo 'An error has occurred! Aborting the script execution...'
